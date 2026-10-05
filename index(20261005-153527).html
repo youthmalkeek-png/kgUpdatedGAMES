@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KG Games — Free Browser Games Launcher</title>
+<meta name="description" content="KG Games is a browser game launcher with free web games, Eaglercraft, settings, and a customizable gaming interface.">
+<meta name="keywords" content="KG Games, browser games, web games, game launcher, Eaglercraft">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="KG Games — Free Browser Games Launcher">
+<meta property="og:description" content="Play browser games from the KG Games launcher.">
+<meta property="og:type" content="website">
+<style>
+:root{--bg:#08090d;--panel:#11131a;--panel2:#181b24;--text:#f5f7fb;--muted:#8d95a7;--accent:#7c5cff;--accent2:#24d6a1;--border:#272b37}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0%,#17132b 0,#08090d 42%);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}.loading{position:fixed;inset:0;display:grid;place-items:center;background:#07080b;z-index:50;transition:.5s}.loader{text-align:center}.logo{font-size:48px;font-weight:900;letter-spacing:-3px}.logo span{color:var(--accent)}.bar{width:280px;height:6px;background:#222631;border-radius:99px;overflow:hidden;margin:22px auto 10px}.bar i{display:block;width:40%;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));animation:load 1.2s infinite}@keyframes load{from{transform:translateX(-120%)}to{transform:translateX(350%)}}.app{display:none;min-height:100vh;position:relative;z-index:5}.top{height:70px;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;gap:28px;background:#0b0c11e8;backdrop-filter:blur(15px);position:sticky;top:0;z-index:10}.brand{font-size:25px;font-weight:900}.brand span{color:var(--accent)}.nav{display:flex;gap:6px}.nav button,.icon{border:0;background:transparent;padding:10px 14px;border-radius:10px;color:var(--muted)}.nav button.active,.nav button:hover,.icon:hover{background:var(--panel2);color:#fff}.spacer{flex:1}.avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;font-weight:800}.page{max-width:1200px;margin:auto;padding:34px 24px 70px}.hero{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:28px}.eyebrow{color:var(--accent2);font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:1.4px}.hero h1{font-size:42px;line-height:1;margin:8px 0}.hero p{color:var(--muted);max-width:650px}.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}.card{background:linear-gradient(145deg,#151822,#0e1016);border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:0 18px 45px #0004}.cover{height:150px;display:grid;place-items:center;font-size:42px;font-weight:900;background:radial-gradient(circle at 50% 20%,#5139a8,#17132c 62%,#0d0e13)}.card-body{padding:18px}.tag{font-size:11px;color:var(--accent2);font-weight:800}.card h3{margin:7px 0}.card p{color:var(--muted);font-size:14px;min-height:40px}.play{width:100%;border:0;background:var(--accent);padding:12px;border-radius:11px;font-weight:800}.play:hover{filter:brightness(1.15)}.settings{display:none}.setting{background:var(--panel);border:1px solid var(--border);padding:18px;border-radius:14px;margin:12px 0;display:flex;justify-content:space-between;align-items:center}.setting small{display:block;color:var(--muted);margin-top:4px}.switch{width:50px;height:28px;border-radius:99px;background:#303541;padding:3px}.switch i{display:block;width:22px;height:22px;border-radius:50%;background:#fff;transition:.2s}.switch.on{background:var(--accent)}.switch.on i{transform:translateX(22px)}.game{display:none;position:fixed;inset:0;background:#000;z-index:40}.gamebar{height:52px;background:#0d0f14;display:flex;align-items:center;padding:0 12px;gap:10px}.gamebar button{background:#191d27;border:1px solid #2a2f3b;border-radius:8px;padding:7px 11px}.gameframe{width:100%;height:calc(100% - 52px);border:0;background:#000}.empty{border:1px dashed #353a48;padding:40px;text-align:center;border-radius:16px;color:var(--muted)}
+@media(max-width:650px){.hero{display:block}.hero h1{font-size:34px}.top{padding:0 14px}.nav button{padding:9px}.page{padding:25px 14px}}
+
+body.bg-blue{background:radial-gradient(circle at 20% 0%,#102c50 0,#08090d 48%)}
+body.bg-green{background:radial-gradient(circle at 20% 0%,#073d32 0,#08090d 48%)}
+body.bg-sunset{background:radial-gradient(circle at 80% 10%,#572b25 0,#08090d 52%)}
+body.bg-black{background:#030405}
+body.anim-aurora{background-size:200% 200%;animation:aurora 10s ease-in-out infinite}
+body.anim-pulse{animation:pulsebg 6s ease-in-out infinite}
+body.anim-stars:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.35;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:45px 45px;animation:stars 12s linear infinite}
+body.anim-grid:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;background-image:linear-gradient(#7c5cff 1px,transparent 1px),linear-gradient(90deg,#7c5cff 1px,transparent 1px);background-size:45px 45px;transform:perspective(400px) rotateX(55deg) scale(2);transform-origin:center bottom;animation:gridmove 5s linear infinite}
+@keyframes aurora{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes pulsebg{0%,100%{background-color:#08090d}50%{background-color:#17102b}}
+@keyframes stars{from{transform:translateY(0)}to{transform:translateY(45px)}}
+@keyframes gridmove{from{background-position:0 0,0 0}to{background-position:0 45px,45px 0}}
+
+body.anim-luffy{background:#120708;overflow-x:hidden}
+body.anim-luffy:before{content:"";position:fixed;inset:-20%;z-index:-1;pointer-events:none;
+background:
+radial-gradient(circle at 50% 35%,rgba(255,190,55,.34) 0 7%,transparent 18%),
+radial-gradient(circle at 20% 70%,rgba(190,25,25,.38),transparent 32%),
+radial-gradient(circle at 82% 25%,rgba(20,65,115,.35),transparent 30%),
+linear-gradient(145deg,#120708,#310b0d 45%,#071321);
+animation:luffybg 12s ease-in-out infinite alternate}
+body.anim-luffy:after{content:"LUFFY  •  GRAND LINE  •  PIRATE KING";position:fixed;left:0;right:0;bottom:8%;
+text-align:center;pointer-events:none;z-index:-1;font-size:clamp(28px,7vw,100px);font-weight:1000;
+letter-spacing:.12em;color:rgba(255,255,255,.055);text-shadow:0 0 35px rgba(255,70,35,.25);
+animation:luffytxt 5s ease-in-out infinite alternate}
+@keyframes luffybg{0%{transform:scale(1) rotate(-1deg);filter:saturate(1)}50%{transform:scale(1.08) rotate(1deg);filter:saturate(1.3)}100%{transform:scale(1.02) rotate(-.5deg);filter:saturate(1.1)}}
+@keyframes luffytxt{from{transform:translateX(-2%) scale(.98)}to{transform:translateX(2%) scale(1.02)}}
+
+/* Luffy-style animated character for the Luffy Adventure background */
+body.anim-luffy .luffy-character{
+  display:block;
+  position:fixed;
+  left:50%;
+  top:50%;
+  width:190px;
+  height:270px;
+  z-index:-1;
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  animation:luffywalk 4.5s ease-in-out infinite alternate;
+  filter:drop-shadow(0 18px 22px rgba(0,0,0,.55));
+}
+body.anim-luffy .luffy-head{
+  position:absolute; left:50px; top:22px; width:90px; height:88px;
+  background:#f2bd83; border:4px solid #17100d; border-radius:48% 48% 45% 45%;
+  z-index:3;
+}
+body.anim-luffy .luffy-hair{
+  position:absolute; left:47px; top:15px; width:96px; height:55px;
+  background:#17100d; border-radius:52% 52% 40% 40%;
+  z-index:4; transform:rotate(-2deg);
+}
+body.anim-luffy .luffy-hair:before,
+body.anim-luffy .luffy-hair:after{
+  content:""; position:absolute; background:#17100d; width:28px; height:38px;
+  border-radius:70% 20% 70% 20%; top:23px;
+}
+body.anim-luffy .luffy-hair:before{left:-9px;transform:rotate(-28deg)}
+body.anim-luffy .luffy-hair:after{right:-8px;transform:rotate(28deg)}
+body.anim-luffy .luffy-hat{
+  position:absolute; left:35px; top:0; width:120px; height:46px;
+  background:#e7b52d; border:4px solid #17100d; border-radius:55% 55% 35% 35%;
+  z-index:5; transform:rotate(-3deg);
+}
+body.anim-luffy .luffy-hat:after{
+  content:""; position:absolute; left:8px; right:8px; bottom:3px; height:11px;
+  background:#c72d25; border-top:3px solid #17100d; border-bottom:3px solid #17100d;
+}
+body.anim-luffy .luffy-eye{
+  position:absolute; top:56px; width:9px; height:13px; background:#111; border-radius:50%; z-index:6;
+}
+body.anim-luffy .luffy-eye.left{left:76px}.luffy-eye.right{left:105px}
+body.anim-luffy .luffy-mouth{
+  position:absolute; left:88px; top:84px; width:25px; height:12px;
+  border-bottom:4px solid #6b1818; border-radius:0 0 50% 50%; z-index:6;
+}
+body.anim-luffy .luffy-body{
+  position:absolute; left:39px; top:100px; width:112px; height:112px;
+  background:#d7352f; border:4px solid #17100d; border-radius:35% 35% 22% 22%;
+  z-index:2;
+}
+body.anim-luffy .luffy-body:after{
+  content:""; position:absolute; left:37px; top:-4px; width:31px; height:112px;
+  background:#f2bd83; opacity:.95;
+}
+body.anim-luffy .luffy-arm{
+  position:absolute; top:110px; width:34px; height:105px;
+  background:#f2bd83; border:4px solid #17100d; border-radius:25px;
+  z-index:1;
+}
+body.anim-luffy .luffy-arm.left{left:12px;transform:rotate(17deg);animation:luffyarm1 1.3s ease-in-out infinite alternate}
+body.anim-luffy .luffy-arm.right{right:10px;transform:rotate(-17deg);animation:luffyarm2 1.3s ease-in-out infinite alternate}
+body.anim-luffy .luffy-leg{
+  position:absolute; top:198px; width:40px; height:68px;
+  background:#2c58a8; border:4px solid #17100d; border-radius:10px 10px 18px 18px;
+  z-index:1;
+}
+body.anim-luffy .luffy-leg.left{left:49px;transform:rotate(4deg)}
+body.anim-luffy .luffy-leg.right{right:48px;transform:rotate(-4deg)}
+body.anim-luffy .luffy-foot{
+  position:absolute; top:248px; width:58px; height:25px;
+  background:#6b3f25; border:4px solid #17100d; border-radius:50%;
+}
+body.anim-luffy .luffy-foot.left{left:32px;transform:rotate(-5deg)}
+body.anim-luffy .luffy-foot.right{right:30px;transform:rotate(5deg)}
+@keyframes luffywalk{
+  0%{transform:translate(-50%,-50%) translateX(-170px) rotate(-1deg)}
+  50%{transform:translate(-50%,-50%) translateX(0) rotate(1deg)}
+  100%{transform:translate(-50%,-50%) translateX(170px) rotate(-1deg)}
+}
+@keyframes luffyarm1{from{transform:rotate(10deg)}to{transform:rotate(28deg)}}
+@keyframes luffyarm2{from{transform:rotate(-10deg)}to{transform:rotate(-28deg)}}
+@media(max-width:650px){
+  body.anim-luffy .luffy-character{transform:translate(-50%,-50%) scale(.72);animation-name:luffywalkmobile}
+}
+@keyframes luffywalkmobile{
+  0%{transform:translate(-50%,-50%) translateX(-95px) scale(.72)}
+  100%{transform:translate(-50%,-50%) translateX(95px) scale(.72)}
+}
+
+
+/* Gear 5 Luffy background layer */
+body.anim-luffy .luffy-character{
+  display:block;
+  position:fixed;
+  left:50%;
+  top:54%;
+  width:min(330px,32vw);
+  height:min(430px,58vh);
+  z-index:1;
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  background-image:url("https://static.wikia.nocookie.net/onepiece/images/6/66/Gear_5_Infobox.png/revision/latest?cb=20251221160520");
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:contain;
+  animation:luffy-image-side-to-side 7s ease-in-out infinite alternate;
+  opacity:.82;
+  filter:drop-shadow(0 18px 25px rgba(0,0,0,.45));
+}
+body.anim-luffy .luffy-character > *{display:none!important}
+body.anim-luffy:before{z-index:-2!important}
+body.anim-luffy:after{z-index:0!important}
+@keyframes luffy-image-side-to-side{
+  0%{transform:translate(-50%,-50%) translateX(-220px) rotate(-2deg) scale(.92)}
+  50%{transform:translate(-50%,-50%) translateX(0) rotate(0) scale(1)}
+  100%{transform:translate(-50%,-50%) translateX(220px) rotate(2deg) scale(.92)}
+}
+@media(max-width:650px){
+  body.anim-luffy .luffy-character{
+    width:230px;height:320px;
+    opacity:.72;
+    animation-name:luffy-image-mobile;
+  }
+}
+@keyframes luffy-image-mobile{
+  0%{transform:translate(-50%,-50%) translateX(-90px) scale(.82)}
+  100%{transform:translate(-50%,-50%) translateX(90px) scale(.82)}
+}
+  100%{transform:translate(-50%,-50%) translateX(80px) scale(.82)}
+}
+
+</style>
+</head>
+<body>
+
+<div class="luffy-character" aria-hidden="true">
+  <div class="luffy-hat"></div>
+  <div class="luffy-hair"></div>
+  <div class="luffy-head"></div>
+  <div class="luffy-eye left"></div><div class="luffy-eye right"></div>
+  <div class="luffy-mouth"></div>
+  <div class="luffy-arm left"></div><div class="luffy-arm right"></div>
+  <div class="luffy-body"></div>
+  <div class="luffy-leg left"></div><div class="luffy-leg right"></div>
+  <div class="luffy-foot left"></div><div class="luffy-foot right"></div>
+</div>
+
+<div class="loading" id="loading"><div class="loader"><div class="logo">KG<span>GAMES</span></div><div class="bar"><i></i></div><div id="loadText">Loading your library...</div></div></div>
+<div class="app" id="app">
+<header class="top"><div class="brand">KG<span>GAMES</span></div><nav class="nav"><button class="active" data-page="home">Library</button><button data-page="youtube">YouTube</button><button data-page="settings">Settings</button></nav><div class="spacer"></div><button class="icon" onclick="toggleFullscreen()">⛶</button><div class="avatar">KG</div></header>
+<main class="page">
+<section id="home">
+<div class="hero"><div><div class="eyebrow">Your game launcher</div><h1>Play something.</h1><p>Launch browser games from one clean interface. Your settings are saved locally in this browser.</p></div></div>
+<div class="cards">
+<article class="card"><div class="cover">EAGLERCRAFT</div><div class="card-body"><div class="tag">BROWSER GAME</div><h3>Eaglercraft</h3><p>Browser-based Minecraft-style voxel game. Put your Eaglercraft web build in the included game folder.</p><button class="play" onclick="launchEagler()">PLAY NOW</button></div></article>
+<article class="card"><div class="cover" style="background:radial-gradient(circle,#135c51,#10181a 65%)">MORE</div><div class="card-body"><div class="tag">COMING SOON</div><h3>More games</h3><p>Add another HTML game by copying its files into a game folder and adding a card.</p><button class="play" onclick="alert('This launcher is ready for more browser games.')">VIEW</button></div></article>
+</div>
+</section>
+
+<section class="settings" id="youtube">
+<div class="eyebrow">Built-in browser</div><h1>YouTube</h1>
+<div style="background:#0d0f14;border:1px solid var(--border);border-radius:16px;overflow:hidden">
+  <div style="display:flex;gap:8px;padding:10px;border-bottom:1px solid var(--border);background:#11131a">
+    <button class="icon" onclick="ytBack()">←</button>
+    <button class="icon" onclick="ytForward()">→</button>
+    <button class="icon" onclick="ytReload()">↻</button>
+    <input id="ytUrl" value="https://www.youtube.com/" style="flex:1;min-width:0;background:#181b24;color:#fff;border:1px solid #2a2f3b;border-radius:9px;padding:9px 12px;outline:none"
+      onkeydown="if(event.key==='Enter')ytGo()">
+    <button class="play" style="width:auto;padding:9px 16px" onclick="ytGo()">GO</button>
+  </div>
+  <iframe id="ytFrame" src="https://www.youtube.com/" style="display:block;width:100%;height:650px;border:0;background:#fff" allow="fullscreen; autoplay; picture-in-picture" title="YouTube browser"></iframe>
+</div>
+<p style="color:var(--muted);font-size:13px">YouTube may prevent some pages from being displayed inside another website. The launcher does not bypass those browser protections.</p>
+</section>
+<section class="settings" id="settings">
+<div class="eyebrow">Launcher preferences</div><h1>Settings</h1>
+<div class="setting"><div><b>Animations</b><small>Show launcher loading animations.</small></div><div class="switch on" id="animations" onclick="toggleSetting('animations')"><i></i></div></div>
+<div class="setting"><div><b>Sound</b><small>Launcher sound effects.</small></div><div class="switch" id="sound" onclick="toggleSetting('sound')"><i></i></div></div>
+<div class="setting"><div><b>Remember last game</b><small>Open your last selected game next time.</small></div><div class="switch on" id="remember" onclick="toggleSetting('remember')"><i></i></div></div>
+<div class="setting" style="display:block">
+  <div><b>Background</b><small>Choose a launcher background.</small></div>
+  <select id="bgChoice" onchange="setBackground()" style="margin-top:12px;width:100%;background:#181b24;color:#fff;border:1px solid #2a2f3b;border-radius:9px;padding:10px">
+    <option value="purple">Purple Glow</option>
+    <option value="blue">Blue Aurora</option>
+    <option value="green">Green Matrix</option>
+    <option value="sunset">Sunset</option>
+    <option value="black">Black</option>
+  </select>
+</div>
+<div class="setting" style="display:block">
+  <div><b>Animated Background</b><small>Choose an animated effect.</small></div>
+  <select id="animBg" onchange="setBackground()" style="margin-top:12px;width:100%;background:#181b24;color:#fff;border:1px solid #2a2f3b;border-radius:9px;padding:10px">
+    <option value="none">None</option>
+    <option value="aurora">Aurora</option>
+    <option value="stars">Moving Stars</option>
+    <option value="grid">Moving Grid</option>
+    <option value="pulse">Color Pulse</option><option value="luffy">Luffy Adventure</option>
+  </select>
+</div>
+<div class="setting"><div><b>Theme</b><small>KG Games uses a dark gaming theme.</small></div><b>Dark</b></div>
+</section>
+</main>
+</div>
+<div class="game" id="game"><div class="gamebar"><button onclick="closeGame()">← Back</button><b>Eaglercraft</b><div class="spacer"></div><button onclick="loadLocalEagler()">Local Build</button><button onclick="gameFullscreen()">⛶ Fullscreen</button></div><iframe id="gameframe" class="gameframe" allow="fullscreen; autoplay; gamepad" title="Eaglercraft"></iframe></div>
+<script>
+const $=id=>document.getElementById(id);
+let settings=JSON.parse(localStorage.getItem('kgSettings')||'{"animations":true,"sound":false,"remember":true}');
+function apply(){for(const k in settings){const e=$(k);if(e)e.classList.toggle('on',!!settings[k])}}
+function toggleSetting(k){settings[k]=!settings[k];localStorage.setItem('kgSettings',JSON.stringify(settings));apply()}
+function showPage(p){
+ document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===p));
+ $('home').style.display=p==='home'?'block':'none';
+ $('youtube').style.display=p==='youtube'?'block':'none';
+ $('settings').style.display=p==='settings'?'block':'none';
+}
+document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>showPage(b.dataset.page));
+function launchEagler(){
+ localStorage.setItem('kgLastGame','eaglercraft');
+ $('game').style.display='block';
+ $('gameframe').src='https://eaglercraft.com/play?version=1.8.8';
+}
+function loadLocalEagler(){
+  $('gameframe').src='games/eaglercraft/index.html';
+}
+function closeGame(){$('game').style.display='none';$('gameframe').src='about:blank'}
+let ytHistory=['https://www.youtube.com/'], ytPos=0;
+function ytGo(){
+ let u=$('ytUrl').value.trim();
+ if(!u) return;
+ if(!/^https?:\/\//i.test(u)) u='https://www.youtube.com/results?search_query='+encodeURIComponent(u);
+ ytHistory=ytHistory.slice(0,ytPos+1); ytHistory.push(u); ytPos++;
+ $('ytFrame').src=u; $('ytUrl').value=u;
+}
+function ytBack(){if(ytPos>0){ytPos--; $('ytFrame').src=ytHistory[ytPos]; $('ytUrl').value=ytHistory[ytPos]}}
+function ytForward(){if(ytPos<ytHistory.length-1){ytPos++; $('ytFrame').src=ytHistory[ytPos]; $('ytUrl').value=ytHistory[ytPos]}}
+function ytReload(){const f=$('ytFrame');f.src=f.src}
+function setBackground(){
+  const bg=$('bgChoice').value, anim=$('animBg').value;
+  document.body.classList.remove('bg-purple','bg-blue','bg-green','bg-sunset','bg-black','anim-aurora','anim-stars','anim-grid','anim-pulse','anim-luffy');
+  document.body.classList.add('bg-'+bg);
+  if(anim!=='none') document.body.classList.add('anim-'+anim);
+  localStorage.setItem('kgBackground',JSON.stringify({bg,anim}));
+}
+(function(){
+  const saved=JSON.parse(localStorage.getItem('kgBackground')||'{"bg":"purple","anim":"none"}');
+  if($('bgChoice')) $('bgChoice').value=saved.bg;
+  if($('animBg')) $('animBg').value=saved.anim;
+  document.body.classList.add('bg-'+saved.bg);
+  if(saved.anim!=='none') document.body.classList.add('anim-'+saved.anim);
+})();
+function toggleFullscreen(){document.documentElement.requestFullscreen?.()}
+function gameFullscreen(){$('gameframe').requestFullscreen?.()}
+apply();
+setTimeout(()=>{$('loading').style.opacity='0';setTimeout(()=>{$('loading').style.display='none';$('app').style.display='block'},500)},settings.animations?1100:100);
+</script>
+</body>
+</html>
